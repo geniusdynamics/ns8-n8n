@@ -5,23 +5,19 @@ Paperless-ngx is a community-supported open-source document management system th
 
 Instantiate the module with:
 
-    add-module ghcr.io/compgeniuses/paperlessngx:latest 1
+    add-module ghcr.io/compgeniuses/n8n:latest 1
 
 The output of the command will return the instance name.
 Output example:
 
-    {"module_id": "paperlessngx", "image_name": "paperlessngx", "image_url": "ghcr.io/compgeniuses/paperlessngx:latest"}
+    {"module_id": "n8n", "image_name": "n8n", "image_url": "ghcr.io/compgeniuses/n8n:latest"}
 
 ## Configure
 
-Let's assume that the paperless instance is named `paperlessngx1`.
+Let's assume that the paperless instance is named `n8n1`.
 
 Launch `configure-module`, by setting the following parameters:
 
-- `paperless_name`: the name given to the instance that wil also appear as the name on the dachboard
-- `PAPERLESS_TIME_ZONE`: the timezone for the project, a config that can be modified
-- `PAPERLESS_TIME_ZONE`: the default is America/Los_Angeles
-- `PAPERLESS_ADMIN_USER`: define the default username and password for superadmin: set to = paperlessadmin
 - `PAPERLESS_ADMIN_PASSWORD`: Define the Default password Set to = P@perle5$
 - `lets_encrypt`: Set LEtsecnrypt to True or False, Default is FALSE
 - `http2https`: set redirect to True or False, Default is True
@@ -31,28 +27,21 @@ Launch `configure-module`, by setting the following parameters:
 
 Example:
 
-    api-cli run module/paperlessngx1/configure-module --data '{"host": "paperlessngx.domain.com"}'
+    api-cli run module/n8n1/configure-module --data '{"host": "n8n.domain.com"}'
 
     or if modifying another value: 
 
-    api-cli run module/paperlessngx5/configure-module --data '{"host": "paperlessngx.domain.com","paperless_name": "MyPaperless NGX"}'
+    api-cli run module/n8n5/configure-module --data '{"host": "n8n.domain.com","n8n_name": "Myn8n NGX"}'
 
-    api-cli run module/paperlessngx1/configure-module --data '{
-        "host": "papperlessngx.rocky9-pve2.org",
+    api-cli run module/n8n1/configure-module --data '{
+        "host": "n8n.rocky9-pve2.org",
         "lets_encrypt": false,
         "http2https": true,
-        "paperless_name": "paperless-ngx",
-        "PAPERLESS_ADMIN_PASSWORD": "P@perle5$",
-        "PAPERLESS_ADMIN_USER":"paperlessadmin",
-        "PAPERLESS_ADMIN_MAIL":"foo@domain.com",
-        "PAPERLESS_TIME_ZONE":"America/Los_Angeles",
-        "PAPERLESS_OCR_LANGUAGE":"eng",
-        "PAPERLESS_COOKIE_PREFIX":"paperlessngx"
     }'
 
 
 The above command will:
-- start and configure the paperlessngx instance
+- start and configure the n8n instance
 - (describe configuration process)
 - ...
 
@@ -62,7 +51,7 @@ WHile they have not been Implemented, if you require more parameters to be defin
 
 Send a test HTTP request to the ns8-paperless-ngx backend service:
 
-    curl http://127.0.0.1/paperlessngx/
+    curl http://127.0.0.1/n8n/
 
 ## Smarthost setting discovery
 
@@ -87,7 +76,7 @@ expected to work: it can be rewritten or discarded completely.
 
 To uninstall the instance:
 
-    remove-module --no-preserve paperlessngx1
+    remove-module --no-preserve n8n1
 
 ## Testing
 
