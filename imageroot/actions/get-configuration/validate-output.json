@@ -7,8 +7,8 @@
         {
 
             "host": "b8n.host.com",
-            "PHP_ENABLE_OPCACHE": "phpopcCHE",
-            "PHP_MEMORY_LIMIT": "phpopcCHE"
+            "PHP_ENABLE_OPCACHE": "mysql",
+            "PHP_MEMORY_LIMIT": "mysql"
         }
     ],
     "type": "object",
@@ -32,8 +32,10 @@
             "type": "string"
         }
 
+   
     },
     "required": [
         "host"
+
     ]
 }
