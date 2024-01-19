@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "configure-module input",
+    "$id": "http://schema.nethserver.org/sogo/configure-module-input.json",
+    "description": "Configure paperless",
+    "examples": [
+        {
+
+            "host": "b8n.host.com",
+            "PHP_ENABLE_OPCACHE": "mysql",
+            "PHP_MEMORY_LIMIT": "mysql"
+        }
+    ],
+    "type": "object",
+    "properties": {
+        "host": {
+            "type": "string"
+        },
+        "POSTGRES_DB": {
+            "type": "string"
+        },
+        "POSTGRES_USER": {
+            "type": "string"
+        },
+        "POSTGRES_PASSWORD": {
+            "type": "string"
+        },
+        "PHP_ENABLE_OPCACHE": {
+            "type": "boolean"
+        },
+        "PHP_MEMORY_LIMIT": {
+            "type": "string"
+        }
+
+   
+    },
+    "required": [
+        "host"
+
+    ]
+}

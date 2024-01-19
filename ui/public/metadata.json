@@ -1,0 +1,19 @@
+{
+  "name": "paperless",
+  "description": {
+    "en": "Paperless-ngx is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper."
+  },
+  "categories": ["collaboration"],
+  "authors": [
+    {
+      "name": "Martin Bhuong",
+      "email": "martin@genius.ke"
+    }
+  ],
+  "docs": {
+    "documentation_url": "https://docs.kickstart.com/",
+    "bug_url": "https://github.com/compgeniuses/ns8-paperless-ngx",
+    "code_url": "https://github.com/compgeniuses/ns8-paperless-ngx"
+  },
+  "source": "ghcr.io/compgeniuses/ns8-paperless-ngx"
+}

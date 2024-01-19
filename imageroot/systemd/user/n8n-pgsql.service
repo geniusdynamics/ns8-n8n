@@ -1,0 +1,25 @@
+[Unit]
+Description=Podman n8n-pgsql.service
+BindsTo=n8n.service
+Before=n8n-redis.service
+
+[Service]
+Environment=PODMAN_SYSTEMD_UNIT=%n
+EnvironmentFile=%S/state/environment
+Restart=always
+TimeoutStopSec=70
+ExecStartPre=/bin/rm -f %t/n8n-pgsql.pid %t/n8n-pgsql.ctr-id
+ExecStartPre=/bin/mkdir -p %S/state/restore/
+ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-pgsql.pid \
+    --cidfile %t/n8n-pgsql.ctr-id --cgroups=no-conmon --pod-id-file %t/ns8-n8n-ngx.pod-id \
+    --replace -d --name n8n-pgsql --env-file=%S/state/database.env \
+    --volume postgres-data:/var/lib/postgresql/data:Z \
+    --volume=db_storage:/var/lib/postgresql/data:Z \
+    ${POSTGRES_IMAGE}
+ExecStop=/usr/bin/podman stop --ignore --cidfile %t/n8n-pgsql.ctr-id -t 10
+ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/n8n-pgsql.ctr-id
+PIDFile=%t/n8n-pgsql.pid
+Type=forking
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# Copyright (C) 2022 Nethesis S.r.l.
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+set -e
+
+echo "Dumping n8n postgres database"
+podman exec n8n-pgsql pg_dump -U n8n --format=c  n8n > n8n.pg_dump
