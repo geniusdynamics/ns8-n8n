@@ -1,5 +1,5 @@
-# ns8-paperless ngx
-Paperless-ngx is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper.
+# n8n
+n8n allows you to build flexible workflows focused on deep data integration
 
 ## Install
 
@@ -14,11 +14,11 @@ Output example:
 
 ## Configure
 
-Let's assume that the paperless instance is named `n8n1`.
+Let's assume that the n8n instance is named `n8n1`.
 
 Launch `configure-module`, by setting the following parameters:
 
-- `PAPERLESS_ADMIN_PASSWORD`: Define the Default password Set to = P@perle5$
+
 - `lets_encrypt`: Set LEtsecnrypt to True or False, Default is FALSE
 - `http2https`: set redirect to True or False, Default is True
 - `host`: the traefik host url for the project
@@ -31,10 +31,10 @@ Example:
 
     or if modifying another value: 
 
-    api-cli run module/n8n5/configure-module --data '{"host": "n8n.domain.com","n8n_name": "Myn8n NGX"}'
+    api-cli run module/n8n5/configure-module --data '{"host": "n8n.domain.com","n8n_name": "Myn8n"}'
 
     api-cli run module/n8n1/configure-module --data '{
-        "host": "n8n.rocky9-pve2.org",
+        "host": "n8n.host.org",
         "lets_encrypt": false,
         "http2https": true,
     }'
@@ -45,11 +45,9 @@ The above command will:
 - (describe configuration process)
 - ...
 
-Additional Parameters are Described here:
-https://docs.paperless-ngx.com/configuration/#hosting-security
-WHile they have not been Implemented, if you require more parameters to be defined, kindly free to raise an issue, and define why and how that parameter should be implemented for use
 
-Send a test HTTP request to the ns8-paperless-ngx backend service:
+
+Send a test HTTP request to the ns8-n8n backend service:
 
     curl http://127.0.0.1/n8n/
 
@@ -63,11 +61,11 @@ setup](https://nethserver.github.io/ns8-core/core/smarthost/) every time
 kickstart starts, the command `bin/discover-smarthost` runs and refreshes
 the `state/smarthost.env` file with fresh values from Redis.
 
-Furthermore if smarthost setup is changed when ns8-paperless-ngx is already
+Furthermore if smarthost setup is changed when ns8-n8n-ngx is already
 running, the event handler `events/smarthost-changed/10reload_services`
 restarts the main module service.
 
-See also the `systemd/user/paperless-server.service` file.
+See also the `systemd/user/n8n-server.service` file.
 
 This setting discovery is just an example to understand how the module is
 expected to work: it can be rewritten or discarded completely.
@@ -83,7 +81,7 @@ To uninstall the instance:
 Test the module using the `test-module.sh` script:
 
 
-    ./test-module.sh <NODE_ADDR> ghcr.io/nethserver/ns8-paperless-ngx:latest
+    ./test-module.sh <NODE_ADDR> ghcr.io/compgeniuses/n8n:latest
 
 The tests are made using [Robot Framework](https://robotframework.org/)
 
@@ -97,8 +95,4 @@ To setup the translation process:
 - add your repository to [hosted.weblate.org]((https://hosted.weblate.org) or ask a NethServer developer to add it to ns8 Weblate project
 
 ## To Do
-[Optional Services:](https://docs.paperless-ngx.com/configuration/#optional-services)
-- Understand and Implement [Apache Tika](https://tika.apache.org/) to your repository
-- Understand and Implement Docker  [gotenberg](https://gotenberg.dev/) to your repository
 
-Paperless can make use of Tika and Gotenberg for parsing and converting "Office" documents (such as ".doc", ".xlsx" and ".odt"). Tika and Gotenberg are also needed to allow parsing of E-Mails (.eml).
