@@ -32,10 +32,8 @@
             "type": "string"
         }
 
-   
     },
     "required": [
         "host"
-
     ]
 }
