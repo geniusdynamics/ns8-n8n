@@ -5,16 +5,14 @@
     "description": "Get kickstart settings",
     "examples": [
         {
-            "host": "kickstart.domain.org",
+            "host": "matomo.domain.org",
             "http2https": true,
             "lets_encrypt": true
         }
     ],
     "type": "object",
     "required": [
-        "host",
-        "http2https",
-        "lets_encrypt"
+        "host"
     ],
     "properties": {
         "host": {
@@ -31,21 +29,7 @@
             "type": "boolean",
             "title": "HTTP to HTTPS redirection",
             "description": "Redirect all the HTTP requests to HTTPS"
-        },
-        "POSTGRES_DB": {
-            "type": "string"
-        },
-        "POSTGRES_USER": {
-            "type": "string"
-        },
-        "POSTGRES_PASSWORD": {
-            "type": "string"
-        },
-        "POSTGRES_NON_ROOT_USER": {
-            "type": "string"
-        },
-        "POSTGRES_NON_ROOT_PASSWORD": {
-            "type": "string"
+        }
         }
     }
 }
