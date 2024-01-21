@@ -5,7 +5,9 @@
     "description": "Get kickstart settings",
     "examples": [
         {
-            "host": "n8n.domain.org"
+            "host": "matomo.domain.org",
+            "http2https": true,
+            "lets_encrypt": true
         }
     ],
     "type": "object",
@@ -27,6 +29,7 @@
             "type": "boolean",
             "title": "HTTP to HTTPS redirection",
             "description": "Redirect all the HTTP requests to HTTPS"
+        }
         }
     }
 }
