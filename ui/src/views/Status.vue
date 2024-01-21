@@ -40,7 +40,7 @@
         <cv-column :md="4" :max="4">
           <NsInfoCard
             light
-            :title="$t('status.paperless_url')"
+            :title="$t('status.n8n_url')"
             :icon="Settings32"
             :loading="loading.getStatus"
             class="min-height-card"
@@ -48,8 +48,8 @@
           <template slot="content">
             <div class="card-rows">
               <div class="card-row">
-                <NsButton kind="ghost" :icon="Launch20" @click="goToPaperless">
-                  {{ $t("status.open_paperless_page") }}
+                <NsButton kind="ghost" :icon="Launch20" @click="goTon8n">
+                  {{ $t("status.open_n8n_page") }}
                 </NsButton>
               </div>
             </div>
@@ -360,7 +360,7 @@ export default {
     this.getConfiguration();
   },
   methods: {
-    goToPaperless() {
+    goTon8n() {
         window.open('http://' + this.host);
     },
     async getConfiguration() {

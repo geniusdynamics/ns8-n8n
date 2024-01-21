@@ -4,14 +4,14 @@
 #
 
 #
-# This systemd unit starts a paperless gotenberg instance using Podman.
+# This systemd unit starts a n8n gotenberg instance using Podman.
 # Most parts of this file come from podman-generate-systemd.
 #
 
 [Unit]
-Description=Podman paperless.service
-Requires=paperless-redis.service paperless-pgsql.service paperless-server.service paperless-gotenberg.service paperless-tika.service
-Before=paperless-redis.service paperless-pgsql.service paperless-server.service paperless-gotenberg.service paperless-tika.service
+Description=Podman n8n.service
+Requires=n8n-redis.service n8n-pgsql.service n8n-server.service
+Before=n8n-redis.service n8n-pgsql.service n8n-server.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
