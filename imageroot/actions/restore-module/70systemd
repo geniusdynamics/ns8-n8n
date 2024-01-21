@@ -26,4 +26,4 @@ set -e
 exec 1>&2
 
 # Enable and restart the service
-systemctl --user enable --now paperless.service
+systemctl --user enable --now n8n.service
