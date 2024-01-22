@@ -12,7 +12,7 @@ ExecStartPre=/bin/rm -f %t/n8n-redis.pid %t/n8n-redis.ctr-id
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-redis.pid \
     --cidfile %t/n8n-redis.ctr-id \
     --cgroups=no-conmon \
-    --pod-id-file %t/ns8-n8n-ngx.pod-id --replace -d \
+    --pod-id-file %t/n8n.pod-id --replace -d \
     --name n8n-redis \
     -v n8n-redis-data:/data \
     ${REDIS_IMAGE} --appendonly yes
