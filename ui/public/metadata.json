@@ -3,7 +3,7 @@
   "description": {
     "en": "n8n is a Workflow automation for technical people."
   },
-  "categories": ["Tools"],
+  "categories": ["development"],
   "authors": [
     {
       "name": "Martin Bhuong",
