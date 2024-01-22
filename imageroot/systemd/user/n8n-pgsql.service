@@ -13,7 +13,7 @@ ExecStartPre=/bin/mkdir -p %S/state/restore/
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-pgsql.pid \
     --cidfile %t/n8n-pgsql.ctr-id --cgroups=no-conmon --pod-id-file %t/n8n.pod-id \
     --replace -d --name n8n-pgsql --env-file=%S/state/database.env \
-    --volume postgres-data:/var/lib/postgresql/data:Z \
+#    --volume postgres-data:/var/lib/postgresql/data:Z \
     --volume=db_storage:/var/lib/postgresql/data:Z \
     ${POSTGRES_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/n8n-pgsql.ctr-id -t 10
