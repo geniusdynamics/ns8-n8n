@@ -9,7 +9,7 @@
 #
 
 [Unit]
-Description=Podman n8n server
+Description=Podman n8n-server.service
 BindsTo=n8n.service
 After=n8n-redis.service n8n-pgsql.service
 
