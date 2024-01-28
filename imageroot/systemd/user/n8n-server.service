@@ -7,10 +7,12 @@
 # This systemd unit starts a n8n instance using Podman.
 # Most parts of this file come from podman-generate-systemd.
 #
+
 [Unit]
 Description=Podman n8n server
 BindsTo=n8n.service
 After=n8n-redis.service n8n-pgsql.service
+
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
 EnvironmentFile=%S/state/environment
@@ -28,12 +30,14 @@ ExecStart=/usr/bin/podman run \
     --replace --name=%N \
     --env-file=smarthost.env \
     --env=n8n_* \
-    --env=DB_TYPE=postgresql \
+    --env=DB_TYPE=postgresdb \
     --env=DB_POSTGRESDB_HOST=127.0.0.1 \
     --env=DB_POSTGRESDB_PORT=5432 \
     --env=DB_POSTGRESDB_DATABASE=${POSTGRES_DATABASE} \
     --env=DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER} \
-    --env=DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_USER} \
+    --env=DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD} \
+    --env=e GENERIC_TIMEZONE=Europe/Berlin \
+    --env=TZ=Africa/Nairobi \
     --env=EXECUTIONS_MODE=queue \
     --env=QUEUE_BULL_REDIS_HOST=redis \
     --env=QUEUE_HEALTH_CHECK_ACTIVE=true \

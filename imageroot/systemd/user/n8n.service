@@ -4,7 +4,7 @@
 #
 
 #
-# This systemd unit starts a n8n gotenberg instance using Podman.
+# This systemd unit starts a n8n instance using Podman.
 # Most parts of this file come from podman-generate-systemd.
 #
 
