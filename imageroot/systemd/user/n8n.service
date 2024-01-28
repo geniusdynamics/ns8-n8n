@@ -22,7 +22,7 @@ ExecStartPre=/bin/rm -f %t/n8n-pod.pid %t/n8n.pod-id
 ExecStartPre=/usr/bin/podman pod create --infra-conmon-pidfile %t/n8n-pod.pid \
     --pod-id-file %t/n8n.pod-id \
     --name n8n \
-    --publish 127.0.0.1:${TCP_PORT}:8011 \
+    --publish 127.0.0.1:${TCP_PORT}:5678 \
     --replace
 ExecStart=/usr/bin/podman pod start --pod-id-file %t/n8n.pod-id
 ExecStop=/usr/bin/podman pod stop --ignore --pod-id-file %t/n8n.pod-id -t 10
