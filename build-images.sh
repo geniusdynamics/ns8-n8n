@@ -14,7 +14,7 @@ images=()
 repobase="${REPOBASE:-ghcr.io/compgeniuses}"
 # Configure the image name
 reponame="n8n"
-n8n_version="1.27.1"
+n8n_version="1.27.2"
 
 # Create a new empty container image
 container=$(buildah from scratch)
