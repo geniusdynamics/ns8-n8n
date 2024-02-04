@@ -29,7 +29,6 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-server.pid \
     --cgroups=no-conmon \
     --pod-id-file=%t/n8n.pod-id \
     --replace --name=%N \
-    --env-file=smarthost.env \
     --env=n8n_* \
     --env=DB_TYPE=postgresdb \
     --env=DB_POSTGRESDB_HOST=127.0.0.1 \
@@ -37,7 +36,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-server.pid \
     --env=DB_POSTGRESDB_DATABASE=${POSTGRES_DATABASE} \
     --env=DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER} \
     --env=DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD} \
-    --env=e GENERIC_TIMEZONE=Europe/Berlin \
+    --env=GENERIC_TIMEZONE=Europe/Berlin \
     --env=TZ=Africa/Nairobi \
     --env=N8N_HOST=${N8N_HOST} \
     --env=N8N_PROTOCOL=https \
