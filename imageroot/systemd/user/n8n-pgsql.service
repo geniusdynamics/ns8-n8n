@@ -1,7 +1,7 @@
 [Unit]
 Description=Podman n8n-pgsql.service
 BindsTo=n8n.service
-Before=n8n-redis.service
+After=n8n.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n

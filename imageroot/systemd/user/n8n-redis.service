@@ -1,7 +1,7 @@
 [Unit]
 Description=Podman n8n-redis.service
 BindsTo=n8n.service
-After=n8n-pgsql.service
+After=n8n.service n8n-pgsql.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n REDIS_IMAGE=docker.io/library/redis:7
