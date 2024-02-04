@@ -38,6 +38,8 @@ ExecStart=/usr/bin/podman run \
     --env=DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD} \
     --env=e GENERIC_TIMEZONE=Europe/Berlin \
     --env=TZ=Africa/Nairobi \
+    --env=N8N_HOST=${N8N_HOST} \
+    --env=N8N_PROTOCOL=https} \
     --env=EXECUTIONS_MODE=queue \
     --env=QUEUE_BULL_REDIS_HOST=redis \
     --env=QUEUE_HEALTH_CHECK_ACTIVE=true \
