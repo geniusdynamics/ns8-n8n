@@ -39,7 +39,6 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-server.pid \
     --env=GENERIC_TIMEZONE=Europe/Berlin \
     --env=TZ=Africa/Nairobi \
     --env=N8N_HOST=${N8N_HOST} \
-    --env=N8N_PROTOCOL=https \
     --env=EXECUTIONS_MODE=queue \
     --env=QUEUE_BULL_REDIS_HOST=127.0.0.1 \
     --env=QUEUE_BULL_REDIS_PORT=6379 \
