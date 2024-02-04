@@ -18,8 +18,8 @@ Environment=PODMAN_SYSTEMD_UNIT=%n
 EnvironmentFile=-%S/state/environment
 Restart=always
 TimeoutStopSec=70
-ExecStartPre=/bin/rm -f %t/n8n-pod.pid %t/n8n.pod-id
-ExecStartPre=/usr/bin/podman pod create --infra-conmon-pidfile %t/n8n-pod.pid \
+ExecStartPre=/bin/rm -f %t/n8n.pid %t/n8n.pod-id
+ExecStartPre=/usr/bin/podman pod create --infra-conmon-pidfile %t/n8n.pid \
     --pod-id-file %t/n8n.pod-id \
     --name n8n \
     --publish 127.0.0.1:${TCP_PORT}:5678 \
@@ -27,7 +27,7 @@ ExecStartPre=/usr/bin/podman pod create --infra-conmon-pidfile %t/n8n-pod.pid \
 ExecStart=/usr/bin/podman pod start --pod-id-file %t/n8n.pod-id
 ExecStop=/usr/bin/podman pod stop --ignore --pod-id-file %t/n8n.pod-id -t 10
 ExecStopPost=/usr/bin/podman pod rm --ignore -f --pod-id-file %t/n8n.pod-id
-PIDFile=%t/n8n-pod.pid
+PIDFile=%t/n8n.pid
 Type=forking
 
 [Install]
