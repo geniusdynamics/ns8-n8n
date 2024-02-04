@@ -43,6 +43,13 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-server.pid \
     --env=QUEUE_BULL_REDIS_HOST=127.0.0.1 \
     --env=QUEUE_BULL_REDIS_PORT=6379 \
     --env=QUEUE_HEALTH_CHECK_ACTIVE=true \
+    --env=N8N_EMAIL_MODE=smtp \
+    --env=N8N_SMTP_SSL=false \
+    --env=N8N_SMTP_HOST=${SMTP_HOST} \
+    --env=N8N_SMTP_PORT=${SMTP_PORT} \
+    --env=N8N_SMTP_USER=${SMTP_USERNAME} \
+    --env=N8N_SMTP_PASS=${SMTP_PASSWORD} \
+    --env=N8N_SMTP_SENDER=${SMTP_USERNAME} \
     --volume=n8n_data:/home/node/.n8n \
     ${N8N_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/n8n-server.ctr-id -t 10
