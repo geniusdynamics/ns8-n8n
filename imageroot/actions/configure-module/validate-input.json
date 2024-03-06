@@ -5,7 +5,7 @@
     "description": "Condifure n8n settings",
     "examples": [
         {
-            "host": "matomo.domain.org",
+            "host": "n8n.domain.org",
             "http2https": true,
             "lets_encrypt": true
         }
