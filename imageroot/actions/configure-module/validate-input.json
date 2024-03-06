@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Get kickstart settings",
-    "$id": "http://nethserver.org/json-schema/task/input/kickstart/get-configuration",
-    "description": "Get kickstart settings",
+    "title": "Get n8n settings",
+    "$id": "http://nethserver.org/json-schema/task/input/n8n/get-configuration",
+    "description": "Get n8n settings",
     "examples": [
         {
             "host": "matomo.domain.org",
@@ -17,7 +17,7 @@
     "properties": {
         "host": {
             "type": "string",
-            "description": "Host name for the application, like 'kickstart.domain.org'",
+            "description": "Host name for the application, like 'n8n.domain.org'",
             "format": "idn-hostname"
         },
         "lets_encrypt": {
@@ -32,4 +32,3 @@
         }
         }
     }
-}
