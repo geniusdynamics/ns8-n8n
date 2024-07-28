@@ -5,12 +5,12 @@ n8n allows you to build flexible workflows focused on deep data integration
 
 Instantiate the module with:
 
-    add-module ghcr.io/compgeniuses/n8n:latest 1
+    add-module ghcr.io/geniusdynamics/n8n:latest 1
 
 The output of the command will return the instance name.
 Output example:
 
-    {"module_id": "n8n", "image_name": "n8n", "image_url": "ghcr.io/compgeniuses/n8n:latest"}
+    {"module_id": "n8n", "image_name": "n8n", "image_url": "ghcr.io/geniusdynamics/n8n:latest"}
 
 ## Configure
 
@@ -81,7 +81,7 @@ To uninstall the instance:
 Test the module using the `test-module.sh` script:
 
 
-    ./test-module.sh <NODE_ADDR> ghcr.io/compgeniuses/n8n:latest
+    ./test-module.sh <NODE_ADDR> ghcr.io/geniusdynamics/n8n:latest
 
 The tests are made using [Robot Framework](https://robotframework.org/)
 
