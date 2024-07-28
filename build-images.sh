@@ -11,10 +11,10 @@ set -e
 # Prepare variables for later use
 images=()
 # The image will be pushed to GitHub container registry
-repobase="${REPOBASE:-ghcr.io/compgeniuses}"
+repobase="${REPOBASE:-ghcr.io/geniusdynamics}"
 # Configure the image name
 reponame="n8n"
-N8N_VERSION="1.36.2"
+N8N_VERSION="1.50.1"
 
 # Create a new empty container image
 container=$(buildah from scratch)
