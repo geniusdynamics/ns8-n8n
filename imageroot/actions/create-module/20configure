@@ -13,15 +13,41 @@ import secrets
 
 data = json.load(sys.stdin)
 
+def generate_random_password():
+    return secrets.token_urlsafe(16)
+
+# Db Config
+
+POSTGRES_DB = data.get("POSTGRES_DB","n8n")
+POSTGRES_USER = data.get("POSTGRES_USER","n8n")
+POSTGRES_PASSWORD = generate_random_password()
+POSTGRES_NON_ROOT_USER = data.get("POSTGRES_NON_ROOT_USER","n8n")
+POSTGRES_NON_ROOT_PASSWORD = generate_random_password()
+
+db_config = {
+    "POSTGRES_DATABASE": POSTGRES_DB,
+    "POSTGRES_USER": POSTGRES_USER,
+    "POSTGRES_PASSWORD": POSTGRES_PASSWORD,
+    "POSTGRES_NON_ROOT_USER": POSTGRES_NON_ROOT_USER,
+    "POSTGRES_NON_ROOT_PASSWORD": POSTGRES_NON_ROOT_PASSWORD,
+
+}
+agent.write_envfile('database.env', db_config)
+
+
 # Setup default values
 random_key = secrets.token_hex(16)
 
-random_key = secrets.token_hex(16)
-N8N_ENCRYPTION_KEY = data.get("N8N_ENCRYPTION_KEY",random_key)
-
-# Talk with agent using file descriptor.
-
-agent.set_env("N8N_ENCRYPTION_KEY", N8N_ENCRYPTION_KEY)
+n8n_config = {
+    "N8N_ENCRYPTION_KEY": random_key,
+    "DB_TYPE": "postgresdb",
+    "DB_POSTGRESDB_HOST": "n8n-pgsql",
+    "DB_POSTGRESDB_PORT": "5432",
+    "DB_POSTGRESDB_DATABASE": POSTGRES_DB,
+    "DB_POSTGRESDB_USER": POSTGRES_NON_ROOT_USER,
+    "DB_POSTGRESDB_PASSWORD": POSTGRES_NON_ROOT_PASSWORD,
+}
+agent.write_envfile('n8n-db.env', n8n_config)
 
 # Make sure everything is saved inside the environment file
 # just before starting systemd unit
