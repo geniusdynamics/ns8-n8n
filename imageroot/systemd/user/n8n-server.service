@@ -29,27 +29,8 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/n8n-server.pid \
     --cgroups=no-conmon \
     --pod-id-file=%t/n8n.pod-id \
     --replace --name=%N \
-    --env=n8n_* \
-    --env=DB_TYPE=postgresdb \
-    --env=DB_POSTGRESDB_HOST=127.0.0.1 \
-    --env=DB_POSTGRESDB_PORT=5432 \
-    --env=DB_POSTGRESDB_DATABASE=${POSTGRES_DATABASE} \
-    --env=DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER} \
-    --env=DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD} \
-    --env=GENERIC_TIMEZONE=Europe/Berlin \
-    --env=TZ=Africa/Nairobi \
-    --env=N8N_HOST=${N8N_HOST} \
-    --env=EXECUTIONS_MODE=queue \
-    --env=QUEUE_BULL_REDIS_HOST=127.0.0.1 \
-    --env=QUEUE_BULL_REDIS_PORT=6379 \
-    --env=QUEUE_HEALTH_CHECK_ACTIVE=true \
-    --env=N8N_EMAIL_MODE=smtp \
-    --env=N8N_SMTP_SSL=false \
-    --env=N8N_SMTP_HOST=${SMTP_HOST} \
-    --env=N8N_SMTP_PORT=${SMTP_PORT} \
-    --env=N8N_SMTP_USER=${SMTP_USERNAME} \
-    --env=N8N_SMTP_PASS=${SMTP_PASSWORD} \
-    --env=N8N_SMTP_SENDER=${SMTP_USERNAME} \
+    --env-file=%S/state/n8n-db.env \
+    --env-file=%S/state/n8n.env \
     --volume=n8n_data:/home/node/.n8n \
     ${N8N_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/n8n-server.ctr-id -t 10
