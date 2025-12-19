@@ -18,6 +18,13 @@ data = json.load(sys.stdin)
 # n8n CSRF settings
 host = data.get("host", "")
 n8n_URL = "https://" + host
+OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS = data.get(
+    "OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS", "true"
+)
+N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS = data.get(
+    "N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS", "true"
+)
+N8N_RUNNERS_ENABLED = data.get("N8N_RUNNERS_ENABLED", "true")
 
 
 # EMAIL Settings Config
@@ -44,6 +51,7 @@ n8n_config = {
     "N8N_SMTP_USER": SMTP_USERNAME,
     "N8N_SMTP_PASS": SMTP_PASSWORD,
     "N8N_SMTP_SENDER": SMTP_USERNAME,
+    "OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS": OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS,
 }
 agent.write_envfile("n8n.env", n8n_config)
 
