@@ -7,6 +7,7 @@
 import os
 import json
 import sys
+
 # agent is a NethServer library which provides function to communicate with the agent
 import agent
 
@@ -16,17 +17,17 @@ data = json.load(sys.stdin)
 
 # n8n CSRF settings
 host = data.get("host", "")
-n8n_URL = "https://"+host
+n8n_URL = "https://" + host
 
 
 # EMAIL Settings Config
 rdb = agent.redis_connect(use_replica=True)
 smtp_settings = agent.get_smarthost_settings(rdb)
 
-SMTP_HOST = smtp_settings['host']
-SMTP_PORT = smtp_settings['port']
-SMTP_USERNAME = smtp_settings['username']
-SMTP_PASSWORD = smtp_settings['password']
+SMTP_HOST = smtp_settings["host"]
+SMTP_PORT = smtp_settings["port"]
+SMTP_USERNAME = smtp_settings["username"]
+SMTP_PASSWORD = smtp_settings["password"]
 
 n8n_config = {
     "GENERIC_TIMEZONE": "Europe/Berlin",
@@ -42,9 +43,9 @@ n8n_config = {
     "N8N_SMTP_PORT": SMTP_PORT,
     "N8N_SMTP_USER": SMTP_USERNAME,
     "N8N_SMTP_PASS": SMTP_PASSWORD,
-    "N8N_SMTP_SENDER": SMTP_USERNAME
+    "N8N_SMTP_SENDER": SMTP_USERNAME,
 }
-agent.write_envfile("n8n.env",n8n_config)
+agent.write_envfile("n8n.env", n8n_config)
 
 
 # Talk with agent using file descriptor.
