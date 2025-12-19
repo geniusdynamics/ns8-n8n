@@ -18,7 +18,11 @@ data = json.load(sys.stdin)
 auth_token = ""
 if os.path.exists("n8n.env"):
     dt = agent.read_envfile("n8n.env")
-    auth_token = dt.get("N8N_RUNNERS_AUTH_TOKEN", secrets.token_urlsafe(32))
+    auth_token = dt.get("N8N_RUNNERS_AUTH_TOKEN")
+    if auth_token == "":
+        auth_token = secrets.token_urlsafe(32)
+else:
+    auth_token = secrets.token_urlsafe(32)
 # n8n CSRF settings
 host = data.get("host", "")
 n8n_URL = "https://" + host
