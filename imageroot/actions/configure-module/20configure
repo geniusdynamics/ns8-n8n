@@ -30,7 +30,7 @@ if not os.path.exists("n8n-db.env"):
         db = agent.read_envfile("database.env")
         random_key = secrets.token_hex(16)
         n8n_config = {
-            "N8N_ENCRYPTION_KEY": random_key,
+            "N8N_ENCRYPTION_KEY": os.getenv("N8N_ENCRYPTION_KEY", random_key),
             "DB_TYPE": "postgresdb",
             "DB_POSTGRESDB_HOST": "n8n-pgsql",
             "DB_POSTGRESDB_PORT": "5432",
