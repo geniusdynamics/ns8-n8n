@@ -32,7 +32,10 @@
     "enabled": "Enabled",
     "http_to_https": "http2https",
     "save": "Save",
-    "test_field": "Test field"
+    "test_field": "Test field",
+    "timezone": "Timezone",
+    "timezone_placeholder": "Choose timezone",
+    "timezone_tooltip": "Timezone for this n8n application"
   },
   "about": {
     "title": "About"
