@@ -23,6 +23,22 @@ if os.path.exists("n8n.env"):
         auth_token = secrets.token_urlsafe(32)
 else:
     auth_token = secrets.token_urlsafe(32)
+
+
+if not os.path.exists("n8n-db.env"):
+    if os.path.exists("database.env"):
+        db = agent.read_envfile("database.env")
+        random_key = secrets.token_hex(16)
+        n8n_config = {
+            "N8N_ENCRYPTION_KEY": random_key,
+            "DB_TYPE": "postgresdb",
+            "DB_POSTGRESDB_HOST": "n8n-pgsql",
+            "DB_POSTGRESDB_PORT": "5432",
+            "DB_POSTGRESDB_DATABASE": db.get("POSTGRES_DATABASE"),
+            "DB_POSTGRESDB_USER": db.get("POSTGRES_NON_ROOT_USER"),
+            "DB_POSTGRESDB_PASSWORD": db.get("POSTGRES_NON_ROOT_PASSWORD"),
+        }
+        agent.write_envfile("n8n-db.env", n8n_config)
 # n8n CSRF settings
 host = data.get("host", "")
 timezone = data.get("timezone", "UTC")
