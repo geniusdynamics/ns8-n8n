@@ -25,6 +25,7 @@ else:
     auth_token = secrets.token_urlsafe(32)
 # n8n CSRF settings
 host = data.get("host", "")
+timezone = data.get("timezone", "UTC")
 n8n_URL = "https://" + host
 OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS = data.get(
     "OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS", "true"
@@ -48,8 +49,8 @@ SMTP_USERNAME = smtp_settings["username"]
 SMTP_PASSWORD = smtp_settings["password"]
 
 n8n_config = {
-    "GENERIC_TIMEZONE": "Europe/Berlin",
-    "TZ": "Africa/Nairobi",
+    "GENERIC_TIMEZONE": timezone,
+    "TZ": timezone,
     "N8N_HOST": n8n_URL,
     "EXECUTIONS_MODE": "queue",
     "QUEUE_BULL_REDIS_HOST": "n8n-redis",
