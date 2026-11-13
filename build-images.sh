@@ -18,7 +18,8 @@ reponame="n8n"
 # renovate: datasource=npm packageName=corepack
 corepack_version=0.36.0
 
-N8N_VERSION="2.48.2"
+# renovate: datasource=docker packageName=docker.io/n8nio/n8n
+N8N_VERSION=2.48.2
 
 
 # Create a new empty container image
