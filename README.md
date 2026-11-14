@@ -1,7 +1,7 @@
 # NS8 n8n Module
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![n8n Version](https://img.shields.io/badge/n8n-2.1.1-orange.svg)](https://github.com/n8n-io/n8n)
+[![n8n Version](https://img.shields.io/badge/n8n-2.48.4-orange.svg)](https://github.com/n8n-io/n8n)
 
 n8n allows you to build flexible workflows focused on deep data integration. This NS8 module provides a complete containerized deployment with PostgreSQL, Redis, and Traefik integration.
 
@@ -12,7 +12,7 @@ The module consists of multiple services orchestrated by systemd:
 - **n8n.service**: Main pod service that manages network connectivity
 - **n8n-pgsql.service**: PostgreSQL database (v15.5-bookworm)
 - **n8n-redis.service**: Redis cache (v7.2.3-bookworm) 
-- **n8n-server.service**: n8n application server (v2.1.1)
+- **n8n-server.service**: n8n application server (v2.48.4)
 
 ## 📦 Container Images
 
@@ -20,7 +20,7 @@ The build process uses the following container images:
 
 - `docker.io/library/redis:7.2.3-bookworm` - Redis database
 - `docker.io/library/postgres:15.5-bookworm` - PostgreSQL database
-- `docker.io/n8nio/n8n:2.1.1` - n8n workflow automation
+- `docker.io/n8nio/n8n:2.48.4` - n8n workflow automation
 - `docker.io/library/node:lts` - Node.js build environment
 
 ## 🔧 Build Process
