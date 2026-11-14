@@ -14,8 +14,12 @@ images=()
 repobase="${REPOBASE:-ghcr.io/geniusdynamics}"
 # Configure the image name
 reponame="n8n"
+# Node.js 25+ no longer ships Corepack, install it from npm
+# renovate: datasource=npm packageName=corepack
+corepack_version=0.36.0
 
-N8N_VERSION="2.1.1"
+# renovate: datasource=docker packageName=docker.io/n8nio/n8n
+N8N_VERSION=2.48.4
 
 
 # Create a new empty container image
@@ -24,7 +28,8 @@ container=$(buildah from scratch)
 # Reuse existing nodebuilder-kickstart container, to speed up builds
 if ! buildah containers --format "{{.ContainerName}}" | grep -q nodebuilder-ns8-n8n; then
 	echo "Pulling NodeJS runtime..."
-	buildah from --name nodebuilder-ns8-n8n -v "${PWD}:/usr/src:Z" docker.io/library/node:lts
+	buildah from --name nodebuilder-ns8-n8n -v "${PWD}:/usr/src:Z" docker.io/library/node:26.13.0-slim
+	buildah run nodebuilder-ns8-n8n sh -c "npm install -g corepack@${corepack_version} && corepack enable"
 fi
 
 echo "Build static UI files with node..."
@@ -42,7 +47,8 @@ buildah config --entrypoint=/ \
 	--label="org.nethserver.authorizations=traefik@node:routeadm" \
 	--label="org.nethserver.tcp-ports-demand=1" \
 	--label="org.nethserver.rootfull=0" \
-	--label="org.nethserver.images=docker.io/library/redis:7.2.3-bookworm docker.io/library/postgres:15.5-bookworm docker.io/n8nio/n8n:${N8N_VERSION} docker.io/n8nio/runners:2.1.1" \
+    --label="org.nethserver.min-core=3.0.0" \
+	--label="org.nethserver.images=docker.io/library/redis:7.4.12-bookworm docker.io/library/postgres:15.20-bookworm docker.io/n8nio/n8n:${N8N_VERSION} docker.io/n8nio/runners:2.48.2" \
 	--label="org.nethserver.tcp-ports-demand=1" \
 	"${container}"
 # Commit the image
